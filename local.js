@@ -14,8 +14,11 @@ const FetchHousingRegisterDataUseCase = new FetchHousingRegisterData({
 });
 
 app.get('/housing_register', async (req, res) => {
-  let biddingNumber = req.query.biddingNumber;
-  res.send(await FetchHousingRegisterDataUseCase.execute(biddingNumber));
+  let params = {};
+  if (req.query.biddingNumber) {
+    params.biddingNumber = req.query.biddingNumber;
+  }
+  res.send(await FetchHousingRegisterDataUseCase.execute(params));
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
