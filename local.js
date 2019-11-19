@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = 3000;
+const cors = require('cors');
+app.use(cors());
 
 const UHTGateway = require('./lib/gateways/UHTGateway');
 const FetchHousingRegisterData = require('./lib/use_cases/FetchHousingRegisterData');
