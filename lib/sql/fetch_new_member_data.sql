@@ -4,7 +4,7 @@ WITH
   (
     SELECT
       wlaneeds.app_ref,
-      MAX(r_to) AS bedrooms
+      rtrim(MAX(r_to)) AS bedrooms
     FROM
       wlaneeds
     WHERE
