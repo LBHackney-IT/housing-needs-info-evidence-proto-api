@@ -1,0 +1,23 @@
+service: hn-infoevidence-api
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-2
+  stage: production
+  profile: hackney
+
+package:
+  exclude:
+    - '**'
+  include:
+    - index.js
+    - lib/**
+    - node_modules/**
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'

@@ -1,4 +1,10 @@
 require('dotenv').config();
+const serverless = require('serverless-http');
+const express = require('express');
+const app = express();
+const port = 3000;
+const cors = require('cors');
+app.use(cors());
 
 const UHTGateway = require('./lib/gateways/UHTGateway');
 const FetchHousingRegisterData = require('./lib/use_cases/FetchHousingRegisterData');
@@ -10,14 +16,14 @@ const FetchHousingRegisterDataUseCase = new FetchHousingRegisterData({
   uhtGateway: new UHTGateway()
 });
 
-async function fetchData(biddingNumber, callback) {
+app.get('/housing_register', async (req, res) => {
   let params = {};
-  if (biddingNumber) {
-    params.biddingNumber = biddingNumber;
+  if (req.query.biddingNumber) {
+    params.biddingNumber = req.query.biddingNumber;
   }
-  callback(await FetchHousingRegisterDataUseCase.execute(params));
-}
+  res.send(await FetchHousingRegisterDataUseCase.execute(params));
+});
 
-exports.handler = (event, context, callback) => {
-  fetchData(event, callback);
-};
+app.listen(port, () => console.log(`App listening on port ${port}!`));
+
+module.exports.handler = serverless(app);
