@@ -5,8 +5,9 @@ describe('FetchHousingRegisterData', function() {
 
   beforeEach(() => {
     uhtGatewaySpy = {
-      connect: jest.fn(),
-      disconnect: jest.fn(),
+      connect: jest.fn(() => {
+        return true;
+      }),
       fetchCurrentListState: jest.fn(() => {
         return {};
       }),
