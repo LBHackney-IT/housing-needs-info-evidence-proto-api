@@ -3,8 +3,8 @@ const serverless = require('serverless-http');
 const express = require('express');
 const app = express();
 const port = 3000;
-// const cors = require('cors');
-// app.use(cors());
+const cors = require('cors');
+app.use(cors());
 
 const UHTGateway = require('./lib/gateways/UHTGateway');
 const FetchHousingRegisterData = require('./lib/use_cases/FetchHousingRegisterData');
@@ -23,7 +23,6 @@ app.use(function(req, res, next) {
 });
 
 app.get('/housing_register', async (req, res) => {
-  console.log('Received request at "/housing_register"');
   let params = {};
   if (req.query.biddingNumber) {
     params.biddingNumber = req.query.biddingNumber;
