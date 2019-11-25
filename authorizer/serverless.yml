@@ -1,0 +1,23 @@
+# add env variables when done
+
+service: hn-infoevidence-authorizer
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-2
+  profile: hackney
+  stage: production
+  timeout: 15
+
+package:
+  exclude:
+    - '**'
+  include:
+    - index.js
+    - node_modules/**
+
+functions:
+  app:
+    role: arn:aws:iam::775052747630:role/LBH_Lambda_Execution
+    handler: index.handler
