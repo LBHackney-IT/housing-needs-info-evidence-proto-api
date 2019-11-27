@@ -1,7 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const jwt_secret = process.env.jwtsecret;
-const hackney_groups = process.env.hackney_groups.split(',');
 
 const allow = {
   principalId: 'user',
@@ -9,7 +8,7 @@ const allow = {
     Version: '2012-10-17',
     Statement: [
       {
-        Action: 'lambda:InvokeFunction',
+        Action: 'execute-api:Invoke',
         Effect: 'Allow',
         Resource: process.env.RESOURCE
       }
