@@ -24,3 +24,4 @@ WHERE
   AND app_band = @appBand
   AND lookup.lu_desc LIKE 'Active%'
   AND wlaneeds_cte.bedrooms = @bedrooms
+  

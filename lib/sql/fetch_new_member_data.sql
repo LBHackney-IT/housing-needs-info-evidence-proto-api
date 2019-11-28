@@ -17,7 +17,11 @@ SELECT
   wlaneeds_cte.bedrooms as bedrooms,
   COUNT(*) as count
 FROM
-  wlapp
+  (SELECT CASE
+      WHEN app_band = 'PRY' THEN 'HOM'
+      ELSE app_band
+      END as app_band, app_ref, wl_status, app_date
+  from wlapp) as wlapp
   LEFT JOIN wlaneeds_cte ON wlaneeds_cte.app_ref = wlapp.app_ref
   LEFT JOIN lookup ON lookup.lu_ref = wlapp.wl_status
     AND lookup.lu_type = 'WLS'
