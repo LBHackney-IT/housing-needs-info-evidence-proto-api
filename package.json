@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "deploy": "sls deploy",
-    "test": "jest --watchAll",
+    "test": "jest",
     "lint": "eslint --fix --ext js lib && echo 'Lint complete.'"
   },
   "author": "",
