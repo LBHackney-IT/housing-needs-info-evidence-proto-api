@@ -22,6 +22,11 @@ jobs:
             sudo npm i -g serverless
             npm install
 
+      - run:
+          name: Set AWS credentials
+          command: |
+            serverless config credentials --provider aws --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
+
       - save_cache:
           paths:
             - node_modules
