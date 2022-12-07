@@ -15,7 +15,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mssql": "^5.1.0",
-    "serverless": "^1.58.0",
+    "serverless": "^3.25.1",
     "serverless-http": "^2.3.0"
   },
   "devDependencies": {
